@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potato Disease Classification</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #83c5be;
+            padding: 20px;
+        }
+        .container {
+            background: #edf6f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: auto;
+        }
+        h1 {
+            color: #83c5be;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .image-preview {
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #ddd;
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #fff;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        button {
+            background-color: #83c5be;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Potato Disease Classification</h1>
+        <input type="file" id="fileInput" accept="image/*">
+        <div class="image-preview" id="imagePreview">No Image Selected</div>
+        <button id="predictBtn">Predict</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#fileInput").change(function(event) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#imagePreview").html('<img src="' + e.target.result + '" alt="Uploaded Image">');
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            });
+
+            $("#predictBtn").click(function() {
+                let file = $("#fileInput")[0].files[0];
+                if (!file) {
+                    alert("Please select an image first.");
+                    return;
+                }
+                let formData = new FormData();
+                formData.append("file", file);
+                
+                $.ajax({
+                    url: "http://127.0.0.1:8000/predict",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $("#result").html("Prediction: " + response.class + "<br>Confidence: " + (response.confidence * 100).toFixed(2) + "%");
+                    },
+                    error: function() {
+                        alert("Error occurred while making prediction.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

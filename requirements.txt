@@ -1,0 +1,14 @@
+tensorflow  
+ipykernel
+jupyter
+numpy
+pandas
+matplotlib
+scikit-learn
+fastapi
+uvicorn
+python-multipart
+pillow
+tensorflow-serving-api==2.5.0
+
+-e .
