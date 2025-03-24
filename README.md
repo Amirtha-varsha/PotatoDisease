@@ -1,4 +1,4 @@
-# Potato Disease Classification Project
+# Potato Disease Prediction
 
 ## Project Overview  
 This project focuses on detecting **potato leaf diseases** using a **Deep Learning** model. The trained **CNN model** classifies potato leaves into three categories:  
