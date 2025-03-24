@@ -46,9 +46,9 @@ A **CNN model** was built using **TensorFlow & Keras**, featuring:
 ---
 ## Result
 Index page
-![Index](Index page.png)
+![Index](Index_page.png)
 Preview image
-![Preview](Choose image.png)
+![Preview](Choose_image.png)
 Prediction
 ![Prediction](Prediction.png)
 
