@@ -44,5 +44,12 @@ A **CNN model** was built using **TensorFlow & Keras**, featuring:
 - **HTML, CSS, JavaScript** - Frontend (Integrated with FastAPI)  
 
 ---
+## Result
+Index page
+![Index](Index page.png)
+Preview image
+![Preview](Choose image.png)
+Prediction
+![Prediction](Prediction.png)
 
 🥔 This project is a **step towards helping farmers detect potato diseases early**, reducing crop losses & improving agricultural yield! 🌱  
